@@ -1,0 +1,18 @@
+:root{
+   
+    --sizeCar: 35px;
+  }
+   
+#coche{
+
+    width: var(--sizeCar);
+    height: var(--sizeCar);
+    background-image: url("../images/Game/car.webp");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: 0px 0px 10px black;
+    position: absolute;
+    z-index: 0;
+    
+}

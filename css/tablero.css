@@ -1,0 +1,68 @@
+:root {
+  --num-columnas: 8;
+  --num-filas: 8;
+  --size: 50px;
+}
+
+#tablero {
+  /* padding: 20px;
+  border-radius: 10px;
+  background-color: black; */
+  box-shadow: 25px 15px 10px rgba(0, 0, 0, 0.344);
+  display: grid;
+ padding: 20px;
+ background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  grid-template-columns: repeat(var(--num-columnas), var(--size));
+  grid-template-rows: repeat(var(--num-filas), var(--size));
+  background: linear-gradient(90deg, rgb(168, 224, 255), rgb(248, 159, 239));
+
+}
+
+.casilla {
+  background-color: #2a2a2a;
+  border-left: 0.5px solid rgb(248, 159, 239);
+  border-top: 0.5px solid white;
+  border-right: 0.5px solid rgb(168, 224, 255);
+  border-bottom: 0.5px solid white;
+  text-align: center;
+  line-height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url("../images/Game/TextureCasilla.jpg"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow:  0 0 10px rgb(255, 255, 255);
+  position: relative;
+
+}
+
+.acantilado {
+  background-image: url("../images/Game/Hole-PNG-Photo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.montaña {
+  background-image: url("../images/Game/stone-6577432_960_720.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.win{
+  background-color: #587852;
+  border-left: 0.5px solid rgb(248, 159, 239);
+  border-top: 0.5px solid white;
+  border-right: 0.5px solid rgb(168, 224, 255);
+  border-bottom: 0.5px solid white;
+  text-align: center;
+  line-height: var(--size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-image: url("../images/Game/TextureCasilla.jpg"); */
+  background-size: cover;
+  background-repeat: no-repeat;
+  box-shadow:  0 0 10px rgb(255, 255, 255);
+  position: relative;
+}
