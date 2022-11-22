@@ -3,9 +3,10 @@ var coche = document.getElementById("coche");
 var cuerpo = document.querySelector("body");
 
 var nieblas= document.getElementById(`niebla f${fil}_c${col}`)
-var dentroMap=0;
-var dentroMaphorizonal=6;
-var nieblaActual=114;
+// DE 1 AL mAX
+var dentroMap=1;
+var dentroMaphorizonal=1;
+var nieblaActual=108;
 
 niebla(nieblaActual);
 
@@ -40,11 +41,13 @@ function movimiento(e) {
       } else if (casillaSiguiente.classList.contains("montaña")) {
         alert("No puedes avanzar! Hay una montaña!");
       } else {
-      
+        ++dentroMap;
         casillaAnterior.removeChild(cocheelegido);
-      //  casillaAnterior.children.namedItem("div").setAttribute("id",);
+      
+     
         nieblaActual=nieblaActual-12;
         niebla(nieblaActual);
+        
         --fil;
       
         var nuevo = document.querySelector(`#f${fil}_c${col}`);
@@ -59,6 +62,7 @@ function movimiento(e) {
       } else if (casillaDetras.classList.contains("montaña")) {
         alert("No puedes avanzar! Hay una montaña!");
       } else {
+        --dentroMap;
         casillaAnterior.removeChild(cocheelegido);
         nieblaActual=nieblaActual+12;
         niebla(nieblaActual);
@@ -78,9 +82,11 @@ function movimiento(e) {
       } else if (casillaIzquierda.classList.contains("montaña")) {
         alert("No puedes avanzar! Hay una montaña!");
       } else {
+        --dentroMaphorizonal;
         casillaAnterior.removeChild(cocheelegido);
         nieblaActual=nieblaActual-1;
         niebla(nieblaActual);
+       
         --col;
         var nuevo = document.querySelector(`#f${fil}_c${col}`);
         nuevo.appendChild(coche);
@@ -96,18 +102,22 @@ function movimiento(e) {
       } else if (casillaDerecha.classList.contains("montaña")) {
         alert("No puedes avanzar! Hay una montaña!");
       } else {
+       
+      
+        
+        ++dentroMaphorizonal;
         casillaAnterior.removeChild(cocheelegido);
-        // casillaAnterior.removeChild(niebla);
         nieblaActual=nieblaActual+1;
         niebla(nieblaActual);
+
         ++col;
-        
+       
         var nuevo = document.querySelector(`#f${fil}_c${col}`);
         nuevo.appendChild(coche);
       }
 
       ganaste(fil,col);
-
+      console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
     }
  
   }catch(error){
@@ -115,7 +125,8 @@ function movimiento(e) {
   }
   volverNiebla(nieblaActual,e);
   if(fil==0 && col==9){
-    window.location = "../Mapa2.html";
+    // window.location = "../Mapa2.html";
+    location.reload();
   }
 }
 
@@ -135,7 +146,7 @@ function ganaste(fil,col){
 
 
 
-// obj = document.getElementById('tablero');
+
 
 function niebla(nieblaACtual){
 
@@ -147,41 +158,61 @@ var pos=0;
   var nieblaDerecha=nieblaACtual+1;
   var nieblaIzquierda=nieblaACtual-1;
 
-  
+  console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
+
+
   posicionActual = document.getElementsByClassName('niebla')[nieblaACtual].setAttribute("id","noniebla");
 
-  if(dentroMap<8){
-  posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
-  }
-
-if(dentroMap>=1){
-
-posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
-}
-if(dentroMaphorizonal<=10){
-  posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
-
-}
-if(dentroMaphorizonal>1){
-posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
-}
-
-  // if(dentroMap>=0 && dentroMaphorizonal==11){
-  //   posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
-
-  // }else{
+  if(dentroMap==1 && dentroMaphorizonal<12 && dentroMaphorizonal!=1){
+    posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
+    posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
+    posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
     
-  //   if(dentroMaphorizonal==11){
-  //     posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
-  //   }else{
-  //     posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
-  //     
-  //   }
-  // }
- 
-  
+   // ESQUINA DERECHA ABAJO
+  }else if(dentroMap==1 && dentroMaphorizonal==12){
+    posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
+    posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
+
+    //ESQUINA IZQUIEDA ABAJO
+  }else if(dentroMap==1 && dentroMaphorizonal==1){
+    posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
+    posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
+
+    // TODO EL MEDIO
+  }else if(dentroMap>1 && dentroMaphorizonal<12 && dentroMaphorizonal>1 && dentroMap<10){
+    posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
+    posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
+    posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
+    posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
+
+  }else if(dentroMap>1 && dentroMaphorizonal==1 && dentroMap<10){
+    posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
+    posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
+    posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
+
+    //ESQUINA IZQUIERDA ARRIBA
+  }else if(dentroMap==10 && dentroMaphorizonal==1){
+    posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
+    posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
+
+  }else if(dentroMap>1 && dentroMap<10 && dentroMaphorizonal==12){
+    posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
+    posicionArriba = document.getElementsByClassName('niebla')[nieblaArriba].setAttribute("id","noniebla");
+    posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
+
+ // ESQUINA DERECHA ARRIBA
+  }else if(dentroMap==10 && dentroMaphorizonal==12){
+    posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
+    posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
 
 
+  }else if(dentroMap==10 && dentroMaphorizonal>1 && dentroMaphorizonal<12){
+
+    posicionAbajo = document.getElementsByClassName('niebla')[nieblaAbajo].setAttribute("id","noniebla");
+    posicionIzquierda = document.getElementsByClassName('niebla')[nieblaIzquierda].setAttribute("id","noniebla");
+    posicionDerecha = document.getElementsByClassName('niebla')[nieblaDerecha].setAttribute("id","noniebla");
+
+  }
 
 
 
@@ -190,85 +221,91 @@ function volverNiebla(posicion,e){
   e = e || window.event;
  
   if(e.keyCode == "87"){ //arriba
+    if(dentroMap==2 && dentroMaphorizonal==12){
+      posicionAbajoIZquierda = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
 
-    if(dentroMap>=1 ){
-      
-      posicionArriba = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
-      posicionAbajo = document.getElementsByClassName('niebla')[posicion+13].setAttribute("id","niebla");
-      posicionAbajoabajo = document.getElementsByClassName('niebla')[posicion+24].setAttribute("id","niebla");
-      if(dentroMap>=0 && dentroMap<=8){
-
-        ++dentroMap;
-      
-      }
-      
     }else{
-      
-      posicionArriba = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
-      posicionAbajo = document.getElementsByClassName('niebla')[posicion+13].setAttribute("id","niebla");
-      ++dentroMap;
-      
-    }
-    console.log("VERTICAL: "+dentroMap)
-  }else if(e.keyCode == "83"){
-
-    
-   
-    if(dentroMap>0){
-      --dentroMap;
-      
-     
+      posicionAbajoDerecha = document.getElementsByClassName('niebla')[posicion+13].setAttribute("id","niebla");
+      posicionAbajoIZquierda = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
+      if(dentroMap>=3){
+      posicionAbajo = document.getElementsByClassName('niebla')[posicion+24].setAttribute("id","niebla");
+  
       }
-      console.log("VERTICAL: "+dentroMap)
-      
-      
-      
-        posicionDerecha = document.getElementsByClassName('niebla')[posicion-11].setAttribute("id","niebla");
-        posicionIzquierda = document.getElementsByClassName('niebla')[posicion-13].setAttribute("id","niebla");
-        posicionAbajoabajo = document.getElementsByClassName('niebla')[posicion-24].setAttribute("id","niebla");
+    }
+   
 
+  }else if(e.keyCode == "83"){
+    if(dentroMap==9 && dentroMaphorizonal==1){
+      posicionAbajoIZquierda = document.getElementsByClassName('niebla')[posicion-11].setAttribute("id","niebla");
+
+    }else{
+      posicionAbajoDerecha = document.getElementsByClassName('niebla')[posicion-13].setAttribute("id","niebla");
+      posicionAbajoIZquierda = document.getElementsByClassName('niebla')[posicion-11].setAttribute("id","niebla");
+      
+      if(dentroMap<=8){
+      posicionAbajo = document.getElementsByClassName('niebla')[posicion-24].setAttribute("id","niebla");
+      }
+  
+    }
+   
       
      
 
   }else if(e.keyCode == "68"){
+    if(dentroMap==10 && dentroMaphorizonal==2){
+      posicionAbajo = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
 
-   if(dentroMaphorizonal>=10){
-    posicionDerecha =document.getElementsByClassName('niebla')[posicion+1].setAttribute("id","niebla");
+    }else{
+      if(dentroMap==10){
+        posicionIzquierda = document.getElementsByClassName('niebla')[posicion-2].setAttribute("id","niebla");
+        posicionAbajo = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
 
-   }
-   if(dentroMap==0){
-    posicionIzquierda = document.getElementsByClassName('niebla')[posicion-2].setAttribute("id","niebla");
-    posicionIzquierda=document.getElementsByClassName('niebla')[posicion -13].setAttribute("id","niebla");
-   }else{
-    posicionIzquierda = document.getElementsByClassName('niebla')[posicion-2].setAttribute("id","niebla");
-    posicionDerecha = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
-    posicionIzquierda =  document.getElementsByClassName('niebla')[posicion -13].setAttribute("id","niebla");
-   }
-
-      // console.log(posicionHorizontal)
-      if(dentroMaphorizonal<11){
-      ++dentroMaphorizonal;
+      }else{
+        if(dentroMap>=2){
+          posicionIzquierda = document.getElementsByClassName('niebla')[posicion-2].setAttribute("id","niebla");
+          posicionAbajo = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
+          posicionArriba =  document.getElementsByClassName('niebla')[posicion -13].setAttribute("id","niebla");
+        }else{
+          posicionIzquierda = document.getElementsByClassName('niebla')[posicion-2].setAttribute("id","niebla");
+          posicionArriba =  document.getElementsByClassName('niebla')[posicion -13].setAttribute("id","niebla");
+        }
+      }
+      
     }
-      console.log("HORIZONTAL: "+dentroMaphorizonal);
-
+   
+    
+    
       
       
       
 
   }else if(e.keyCode == "65"){
 
-    
-     
+    if(dentroMap>=2 && dentroMap<10){
       posicionDerecha = document.getElementsByClassName('niebla')[posicion+2].setAttribute("id","niebla");
       posicionArriba = document.getElementsByClassName('niebla')[posicion-11].setAttribute("id","niebla");
       posicionAbajo =  document.getElementsByClassName('niebla')[posicion +13].setAttribute("id","niebla");
-      if(dentroMaphorizonal>0){
+     
+    }else if(dentroMap==10){
+      posicionAbajo =  document.getElementsByClassName('niebla')[posicion +13].setAttribute("id","niebla");
+      posicionDerecha = document.getElementsByClassName('niebla')[posicion+2].setAttribute("id","niebla");
 
-        --dentroMaphorizonal;
-       
+    }else{
+      if(dentroMap==1 && dentroMaphorizonal==11){
+        posicionArriba = document.getElementsByClassName('niebla')[posicion-11].setAttribute("id","niebla");
+
+      }else{
+        posicionDerecha = document.getElementsByClassName('niebla')[posicion+2].setAttribute("id","niebla");
+        // posicionArriba = document.getElementsByClassName('niebla')[posicion+11].setAttribute("id","niebla");
+        posicionArriba = document.getElementsByClassName('niebla')[posicion-11].setAttribute("id","niebla");
       }
+     
+    }
+  
+
+      
    
-      console.log("HORIZONTAL: "+dentroMaphorizonal);
+    
 
       
 }

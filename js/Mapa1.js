@@ -1,13 +1,14 @@
 
 //PINTAMOS EL TAMAÑO DEL TABLERO
 
-var maxfila=10;
-var maxColumna=12;
+let maxfila=10;
+let maxColumna=12;
+
 pintarTablero(maxfila,maxColumna);
 
 
 //WIN PLACE
-var win = document.getElementById("f0_c9");
+var win = document.getElementById("f0_c11");
 win.classList.remove("casilla");
 win.classList.add("win");
 
@@ -29,12 +30,21 @@ acantilado6.classList.add("acantilado");
 
 //MONTAÑAS
 var acantilado= document.getElementById("f2_c5");
+var acantilado2= document.getElementById("f2_c6");
+var acantilado3= document.getElementById("f2_c7");
+var acantilado4= document.getElementById("f2_c8");
+var acantilado5= document.getElementById("f2_c9");
+
 acantilado.classList.add("montaña");
+acantilado2.classList.add("montaña");
+acantilado3.classList.add("montaña");
+acantilado4.classList.add("montaña");
+acantilado5.classList.add("montaña");
 
 //Start Coche
 
 var fil=9;
-var col=6;
+var col=0;
 var pintado = document.querySelector(`#f${fil}_c${col}`);
 
 var coche=document.createElement("div");
