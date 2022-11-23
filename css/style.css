@@ -79,7 +79,7 @@ body{
 
 
 .niebla{
-  background-color: rgba(234, 234, 234, 0.489);
+  background-color: rgb(234, 234, 234);
   width: 100%;
   height: 100%;
   box-shadow: 0 0 20px white;

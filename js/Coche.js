@@ -124,7 +124,7 @@ function movimiento(e) {
     alert("Limite de mapa");
   }
   volverNiebla(nieblaActual,e);
-  if(fil==0 && col==9){
+  if(fil==0 && col==11){
     // window.location = "../Mapa2.html";
     location.reload();
   }
