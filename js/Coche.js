@@ -8,6 +8,18 @@ var dentroMap=1;
 var dentroMaphorizonal=1;
 var nieblaActual=108;
 
+var textomontana=` 
+      <div id="avisomontana">
+      CUIDADO!<br> Montaña, no puedes pasar! <br>GANAS: 2s
+      </div>`;
+var textoacantilado=` 
+      <div id="avisoacantilado">
+      CUIDADO!<br> Acantilado! Te caiste! <br>GANAS: 3s
+      </div>`;
+var textoWin=` 
+<div id="avisoacantilado"> GANASTE
+</div>`;
+
 niebla(nieblaActual);
 
 
@@ -31,15 +43,35 @@ function movimiento(e) {
   var casillaDerecha = document.querySelector(`#f${fil}_c${col + 1}`);
   var casillaIzquierda = document.querySelector(`#f${fil}_c${col - 1}`);
 
-  try{
+  // try{
   
     if (e.keyCode == "87") {
       //ARRIBA
+      
+    
 
+      var casillaaabajoarriba = document.querySelector(`#f${fil+9}_c${col}`);
+      
+      if(dentroMap==10){
+        if (casillaaabajoarriba.classList.contains("acantilado")) {
+          ponerTextoAvantilado()
+        } else if (casillaaabajoarriba.classList.contains("montaña")) {
+          ponerTextoMontana();
+          
+        }else{
+          dentroMap=1;
+          casillaAnterior.removeChild(cocheelegido);
+          nieblaActual=nieblaActual+108;
+          niebla(nieblaActual);
+          fil=9;
+          var nuevo = document.querySelector(`#f${fil}_c${col}`);
+          nuevo.appendChild(coche);
+          }
+        }
       if (casillaSiguiente.classList.contains("acantilado")) {
-        alert("No puedes avanzar! Hay un acantilado!");
+        ponerTextoAvantilado()
       } else if (casillaSiguiente.classList.contains("montaña")) {
-        alert("No puedes avanzar! Hay una montaña!");
+        ponerTextoMontana();d
       } else {
         ++dentroMap;
         casillaAnterior.removeChild(cocheelegido);
@@ -56,11 +88,28 @@ function movimiento(e) {
       ganaste(fil,col);
     } else if (e.keyCode == "83") {
       //ABAJO
+      var casillaaabajoarriba = document.querySelector(`#f${fil-9}_c${col}`);
+      
+      if(dentroMap==1){
+        if (casillaaabajoarriba.classList.contains("acantilado")) {
+          ponerTextoAvantilado()
+        } else if (casillaaabajoarriba.classList.contains("montaña")) {
+          ponerTextoMontana()
+        }else{
+        dentroMap=10;
+        casillaAnterior.removeChild(cocheelegido);
+        nieblaActual=nieblaActual-108;
+        niebla(nieblaActual);
+        fil=0;
+        var nuevo = document.querySelector(`#f${fil}_c${col}`);
+        nuevo.appendChild(coche);
+        }
+      }
 
       if (casillaDetras.classList.contains("acantilado")) {
-        alert("No puedes avanzar! Hay un acantilado!");
+        ponerTextoAvantilado()
       } else if (casillaDetras.classList.contains("montaña")) {
-        alert("No puedes avanzar! Hay una montaña!");
+        ponerTextoMontana()
       } else {
         --dentroMap;
         casillaAnterior.removeChild(cocheelegido);
@@ -73,38 +122,80 @@ function movimiento(e) {
         var nuevo = document.querySelector(`#f${fil}_c${col}`);
         nuevo.appendChild(coche);
       }
+    
       ganaste(fil,col);
 
     } else if (e.keyCode == "65") {
       //IZQUIERDA
-      if (casillaIzquierda.classList.contains("acantilado")) {
-        alert("No puedes avanzar! Hay un acantilado!");
-      } else if (casillaIzquierda.classList.contains("montaña")) {
-        alert("No puedes avanzar! Hay una montaña!");
-      } else {
-        --dentroMaphorizonal;
+
+      if(dentroMaphorizonal==1){
+        var casillaaIzquierdaderecha = document.querySelector(`#f${fil}_c${col+11}`);
+    
+          if (casillaaIzquierdaderecha.classList.contains("acantilado")) {
+            ponerTextoAvantilado()
+          } else if (casillaaIzquierdaderecha.classList.contains("montaña")) {
+            ponerTextoMontana()
+          }else{
+        
+        dentroMaphorizonal=12;
         casillaAnterior.removeChild(cocheelegido);
-        nieblaActual=nieblaActual-1;
+        nieblaActual=nieblaActual+11;
         niebla(nieblaActual);
-       
-        --col;
+        col=11;
         var nuevo = document.querySelector(`#f${fil}_c${col}`);
         nuevo.appendChild(coche);
-     
+          }
+      }else{
+        if (casillaIzquierda.classList.contains("acantilado")) {
+          ponerTextoAvantilado()
+        } else if (casillaIzquierda.classList.contains("montaña")) {
+          ponerTextoMontana()
+        }else{
+          --dentroMaphorizonal;
+          casillaAnterior.removeChild(cocheelegido);
+          nieblaActual=nieblaActual-1;
+          niebla(nieblaActual);
+         
+          --col;
+          var nuevo = document.querySelector(`#f${fil}_c${col}`);
+          nuevo.appendChild(coche);
+        }
+        
+        
+       
       }
+
+     
+      
 
       ganaste(fil,col);
 
     } else if (e.keyCode == "68") {
       //DERECHA
+
+      if(dentroMaphorizonal==12){
+        var casillaaderechaIzquierda = document.querySelector(`#f${fil}_c${col-11}`);
+    
+          if (casillaaderechaIzquierda.classList.contains("acantilado")) {
+            ponerTextoAvantilado()
+          } else if (casillaaderechaIzquierda.classList.contains("montaña")) {
+            ponerTextoMontana()
+          }else{
+        dentroMaphorizonal=1;
+        casillaAnterior.removeChild(cocheelegido);
+        nieblaActual=nieblaActual-11;
+        niebla(nieblaActual);
+        col=0;
+        var nuevo = document.querySelector(`#f${fil}_c${col}`);
+        nuevo.appendChild(coche);
+          }
+      }else{
       if (casillaDerecha.classList.contains("acantilado")) {
-        alert("No puedes avanzar! Hay un acantilado!");
+        ponerTextoAvantilado()
       } else if (casillaDerecha.classList.contains("montaña")) {
-        alert("No puedes avanzar! Hay una montaña!");
+        ponerTextoMontana()
       } else {
-       
       
-        
         ++dentroMaphorizonal;
         casillaAnterior.removeChild(cocheelegido);
         nieblaActual=nieblaActual+1;
@@ -115,18 +206,21 @@ function movimiento(e) {
         var nuevo = document.querySelector(`#f${fil}_c${col}`);
         nuevo.appendChild(coche);
       }
-
+    }
       ganaste(fil,col);
       console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
     }
- 
-  }catch(error){
-    alert("Limite de mapa");
-  }
-  volverNiebla(nieblaActual,e);
+    
+  // }catch(error){
+  //   alert("Limite de mapa");
+  // }
+  // SI QUIERES NIEBLA SOLO TIENES QUE PONER ESTA FUNCION DISPONIBLE
+  // FALTA IMPLEMENTAR QUITAR NIEBLA CUANDO PASA DE MAPA
+  // volverNiebla(nieblaActual,e); 
   if(fil==0 && col==11){
     // window.location = "../Mapa2.html";
-    location.reload();
+   
+   
   }
 }
 
@@ -138,8 +232,11 @@ function ganaste(fil,col){
   if (
     document.querySelector(`#f${fil}_c${col}`).classList.contains("win")
   ) {
-    alert("Ganaste!!");
-    location.reload();
+    ponerTextoWin();
+    setTimeout(function(){
+      location.reload();
+  }, 1500);
+    
   }
 }
 
@@ -309,4 +406,29 @@ function volverNiebla(posicion,e){
 
       
 }
+}
+
+function ponerTextoMontana(){
+
+  cuerpo.innerHTML+=textomontana;
+  setTimeout(function(){
+    document.getElementById("avisomontana").remove();
+}, 800);
+
+}
+
+function ponerTextoAvantilado(){
+
+  cuerpo.innerHTML+=textoacantilado;
+  setTimeout(function(){
+    document.getElementById("avisoacantilado").remove();
+}, 800);
+
+}
+function ponerTextoWin(){
+
+  cuerpo.innerHTML+=textoWin;
+  setTimeout(function(){
+    document.getElementById("textoWin").remove();
+}, 1500);
 }

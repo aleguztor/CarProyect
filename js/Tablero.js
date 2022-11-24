@@ -1,5 +1,5 @@
     var Tablero = document.getElementById("tablero");
-  
+    var cuerpo = document.querySelector("body");
     var tabla   = document.createElement("table");
     var tblBody = document.createElement("tbody");
 // CREACION DE TABLERO 15 x 10 casillas
@@ -30,3 +30,8 @@ function pintarTablero(numFilas, numColumnas){
         }
     }
 }
+
+var avisomontana = document.createElement("div");
+avisomontana.classList.add("avisomontana");
+avisomontana.appendChild("CUIDADO!<br> Montaña, no puedes pasar! <br> +2s");
+cuerpo.appendChild(avisomontana);
