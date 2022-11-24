@@ -3,10 +3,15 @@ var coche = document.getElementById("coche");
 var cuerpo = document.querySelector("body");
 
 var nieblas= document.getElementById(`niebla f${fil}_c${col}`)
-// DE 1 AL mAX
-var dentroMap=1;
-var dentroMaphorizonal=1;
-var nieblaActual=108;
+
+
+
+
+
+// DE 1 AL mAX DATOS INTOCABLES
+var dentroMap=9;
+var dentroMaphorizonal=2;
+var nieblaActual=13;
 
 var textomontana=` 
       <div id="avisomontana">
@@ -210,18 +215,11 @@ function movimiento(e) {
       ganaste(fil,col);
       console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
     }
-    
-  // }catch(error){
-  //   alert("Limite de mapa");
-  // }
+ 
   // SI QUIERES NIEBLA SOLO TIENES QUE PONER ESTA FUNCION DISPONIBLE
   // FALTA IMPLEMENTAR QUITAR NIEBLA CUANDO PASA DE MAPA
   // volverNiebla(nieblaActual,e); 
-  if(fil==0 && col==11){
-    // window.location = "../Mapa2.html";
-   
-   
-  }
+ 
 }
 
 
@@ -232,10 +230,14 @@ function ganaste(fil,col){
   if (
     document.querySelector(`#f${fil}_c${col}`).classList.contains("win")
   ) {
+    var audioGanaste = new Audio('../Sounds/462250__silverillusionist__victory-sound-1.wav');
+    audioGanaste.volume=0.6;
+    audioGanaste.play();
     ponerTextoWin();
+   
     setTimeout(function(){
       location.reload();
-  }, 1500);
+  }, 2200);
     
   }
 }
@@ -411,6 +413,9 @@ function volverNiebla(posicion,e){
 function ponerTextoMontana(){
 
   cuerpo.innerHTML+=textomontana;
+  var audioMontana = new Audio('../Sounds/RockSound.wav');
+  audioMontana.volume=0.3;
+  audioMontana.play();
   setTimeout(function(){
     document.getElementById("avisomontana").remove();
 }, 800);
@@ -418,8 +423,10 @@ function ponerTextoMontana(){
 }
 
 function ponerTextoAvantilado(){
-
+  var audioAcantilado =  new Audio('../Sounds/HillFall.wav');
   cuerpo.innerHTML+=textoacantilado;
+  audioAcantilado.volume=0.7;
+  audioAcantilado.play();
   setTimeout(function(){
     document.getElementById("avisoacantilado").remove();
 }, 800);

@@ -1,32 +1,17 @@
 
 //PINTAMOS EL TAMAÑO DEL TABLERO
 
-let maxfila=10;
-let maxColumna=12;
 
 pintarTablero(maxfila,maxColumna);
-
+getMapRandom(url,maxfila, maxColumna);
 
 //WIN PLACE
-var win = document.getElementById("f0_c11");
+var win = document.getElementById("f8_c10");
 win.classList.remove("casilla");
 win.classList.add("win");
 
-//ACANTILADOS
 
-var acantilado= document.getElementById("f0_c3");
-var acantilado2= document.getElementById("f1_c3");
-var acantilado3= document.getElementById("f0_c4");
-var acantilado4= document.getElementById("f3_c1");
-var acantilado5= document.getElementById("f5_c2");
-var acantilado6= document.getElementById("f0_c6");
 
-acantilado.classList.add("acantilado");
-acantilado2.classList.add("acantilado");
-acantilado3.classList.add("acantilado");
-acantilado4.classList.add("acantilado");
-acantilado5.classList.add("acantilado");
-acantilado6.classList.add("acantilado");
 
 //MONTAÑAS
 var acantilado= document.getElementById("f2_c5");
@@ -43,8 +28,8 @@ acantilado5.classList.add("montaña");
 
 //Start Coche
 
-var fil=9;
-var col=0;
+var fil=1;
+var col=1;
 var pintado = document.querySelector(`#f${fil}_c${col}`);
 
 var coche=document.createElement("div");
@@ -53,5 +38,32 @@ coche.setAttribute("id","coche");
 pintado.appendChild(coche);
 
 
-///NIEBLA
 
+
+
+async function getMapRandom(url,numFilas, numColumnas){
+    const response = await fetch(url);
+    var data = await response.json();
+        
+   
+
+    for(let f=0; f<numFilas; f++){
+        for(let c=0; c<numColumnas; c++){
+
+            //ACANTILADOS
+            if(data[f][c]==1){
+                var acantilado= document.getElementById(`f${f}_c${c}`);
+                acantilado.classList.add("acantilado");
+            }
+
+            //MONTAÑAS
+            if(data[f][c]==2){
+                var acantilado= document.getElementById(`f${f}_c${c}`);
+                acantilado.classList.add("montaña");
+            }
+        }
+    }
+
+    console.log(data);
+    
+}
