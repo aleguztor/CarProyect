@@ -51,6 +51,6 @@ async function getMapRandom(url,numFilas, numColumnas){
         }
     }
 
-    console.log(data);
+    // console.log(data);
     
 }

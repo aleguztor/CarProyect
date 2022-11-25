@@ -10,7 +10,7 @@ var  score=0;
 
 startContador();
 
-console.log(score);
+// console.log(score);
 
 
 
@@ -254,7 +254,7 @@ function movimiento(e) {
       }
     }
       ganaste(fil,col);
-      console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
+      // console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
     }
  
   // SI QUIERES NIEBLA SOLO TIENES QUE PONER ESTA FUNCION DISPONIBLE
@@ -298,7 +298,7 @@ var pos=0;
   var nieblaDerecha=nieblaACtual+1;
   var nieblaIzquierda=nieblaACtual-1;
 
-  console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
+  // console.log("Vertical: "+dentroMap+" Horizontal: "+dentroMaphorizonal);
 
 
   posicionActual = document.getElementsByClassName('niebla')[nieblaACtual].setAttribute("id","noniebla");
