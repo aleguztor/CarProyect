@@ -4,6 +4,31 @@ var cuerpo = document.querySelector("body");
 
 var nieblas= document.getElementById(`niebla f${fil}_c${col}`)
 
+var  score=0;
+
+
+
+startContador();
+
+console.log(score);
+
+
+
+function startContador(){ 
+  setInterval(() => {
+    var textoScore = ` 
+    <div id="puntuacionDiv">
+    <h2> TIME : ${score} </h2>
+    </div>`;
+    cuerpo.innerHTML+=textoScore;
+    setTimeout(function(){
+      document.getElementById("puntuacionDiv").remove();
+  }, 1000);
+   
+    ++score
+  }, 1000)
+  
+}
 
 
 
@@ -60,8 +85,10 @@ function movimiento(e) {
       if(dentroMap==10){
         if (casillaaabajoarriba.classList.contains("acantilado")) {
           ponerTextoAvantilado()
+          score=score+3;
         } else if (casillaaabajoarriba.classList.contains("montaña")) {
           ponerTextoMontana();
+          score=score+2;
           
         }else{
           dentroMap=1;
@@ -74,9 +101,11 @@ function movimiento(e) {
           }
         }
       if (casillaSiguiente.classList.contains("acantilado")) {
-        ponerTextoAvantilado()
+        ponerTextoAvantilado();
+        score=score+3;
       } else if (casillaSiguiente.classList.contains("montaña")) {
-        ponerTextoMontana();d
+        ponerTextoMontana();
+        score=score+2;
       } else {
         ++dentroMap;
         casillaAnterior.removeChild(cocheelegido);
@@ -98,8 +127,10 @@ function movimiento(e) {
       if(dentroMap==1){
         if (casillaaabajoarriba.classList.contains("acantilado")) {
           ponerTextoAvantilado()
+          score=score+3;
         } else if (casillaaabajoarriba.classList.contains("montaña")) {
           ponerTextoMontana()
+          score=score+2;
         }else{
         dentroMap=10;
         casillaAnterior.removeChild(cocheelegido);
@@ -113,8 +144,10 @@ function movimiento(e) {
 
       if (casillaDetras.classList.contains("acantilado")) {
         ponerTextoAvantilado()
+        score=score+3;
       } else if (casillaDetras.classList.contains("montaña")) {
         ponerTextoMontana()
+        score=score+2;
       } else {
         --dentroMap;
         casillaAnterior.removeChild(cocheelegido);
@@ -138,8 +171,10 @@ function movimiento(e) {
     
           if (casillaaIzquierdaderecha.classList.contains("acantilado")) {
             ponerTextoAvantilado()
+            score=score+3;
           } else if (casillaaIzquierdaderecha.classList.contains("montaña")) {
             ponerTextoMontana()
+            score=score+2;
           }else{
         
         dentroMaphorizonal=12;
@@ -153,8 +188,10 @@ function movimiento(e) {
       }else{
         if (casillaIzquierda.classList.contains("acantilado")) {
           ponerTextoAvantilado()
+          score=score+3;
         } else if (casillaIzquierda.classList.contains("montaña")) {
           ponerTextoMontana()
+          score=score+2;
         }else{
           --dentroMaphorizonal;
           casillaAnterior.removeChild(cocheelegido);
@@ -183,8 +220,10 @@ function movimiento(e) {
     
           if (casillaaderechaIzquierda.classList.contains("acantilado")) {
             ponerTextoAvantilado()
+            score=score+3;
           } else if (casillaaderechaIzquierda.classList.contains("montaña")) {
             ponerTextoMontana()
+            score=score+2;
           }else{
         dentroMaphorizonal=1;
         casillaAnterior.removeChild(cocheelegido);
@@ -197,8 +236,10 @@ function movimiento(e) {
       }else{
       if (casillaDerecha.classList.contains("acantilado")) {
         ponerTextoAvantilado()
+        score=score+3;
       } else if (casillaDerecha.classList.contains("montaña")) {
         ponerTextoMontana()
+        çscore=score+2;
       } else {
       
         ++dentroMaphorizonal;

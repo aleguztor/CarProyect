@@ -13,19 +13,6 @@ win.classList.add("win");
 
 
 
-//MONTAÑAS
-var acantilado= document.getElementById("f2_c5");
-var acantilado2= document.getElementById("f2_c6");
-var acantilado3= document.getElementById("f2_c7");
-var acantilado4= document.getElementById("f2_c8");
-var acantilado5= document.getElementById("f2_c9");
-
-acantilado.classList.add("montaña");
-acantilado2.classList.add("montaña");
-acantilado3.classList.add("montaña");
-acantilado4.classList.add("montaña");
-acantilado5.classList.add("montaña");
-
 //Start Coche
 
 var fil=1;

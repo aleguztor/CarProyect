@@ -16,6 +16,7 @@
 var audioElement = new Audio('../Sounds/MusicComplete.mp3');
 audioElement.volume=0.7;
 audioElement.play();
+
 audioElement.addEventListener('ended', function() {
     this.currentTime = 0;
     this.volume=0.5;
@@ -48,6 +49,7 @@ function pintarTablero(numFilas, numColumnas){
             
         }
     }
+    
 }
 
 
