@@ -15,7 +15,8 @@
 
 var audioElement = new Audio('../Sounds/MusicComplete.mp3');
 audioElement.volume=0.7;
-audioElement.play();
+
+
 
 audioElement.addEventListener('ended', function() {
     this.currentTime = 0;
@@ -26,7 +27,7 @@ audioElement.addEventListener('ended', function() {
 
 function pintarTablero(numFilas, numColumnas){
     let tablero = document.querySelector("#tablero");
- 
+  
     document.querySelector("html").style.setProperty("--num-filas",numFilas);
     document.querySelector("html").style.setProperty("--num-columnas",numColumnas);
  

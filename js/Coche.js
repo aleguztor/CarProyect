@@ -52,9 +52,13 @@ var textoWin=`
 
 niebla(nieblaActual);
 
-
+var musica=0;
 cuerpo.addEventListener("keydown", function () {
-   
+  if(musica==0){
+    audioElement.play();
+    ++musica;
+  }
+
   document.onkeydown = movimiento();
 
 });
