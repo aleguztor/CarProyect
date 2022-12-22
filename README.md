@@ -3,6 +3,6 @@ This game have got a random map generator, so you need start de spring boot for 
 
 STEPS:
 - Open BACKEND folder and start the maven project.
-- Then, you can play in (This Web)[https://aleguztor.github.io/CarProyect/].
+- Then, you can play in [This Web](https://aleguztor.github.io/CarProyect/).
 
 Enjoy it!
